@@ -35,13 +35,14 @@ abstract class AbstractTaskExecutor(
             fetchedTasks.value -= task
         }
     }
-    
-    private fun fetchTask(): ExecutorTask<*, *>? = fetchedTasks.value.removeFirstOrNull()
+
+    private fun fetchTask(): ExecutorTask<*, *>? {
+        return fetchedTasks.value.removeFirstOrNull()
+    }
 
     private fun processNextTask() {
-        fetchTask()?.let { task ->
-            process(task)
-        }
+        val task = fetchTask() ?: return
+        process(task)
     }
 
     private fun process(task: ExecutorTask<*, *>) {
@@ -52,7 +53,7 @@ abstract class AbstractTaskExecutor(
                 }
                 task.updateProgressPercentage(100f)
             }
+            processNextTask()
         }
-        processNextTask()
     }
 }
