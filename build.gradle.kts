@@ -9,12 +9,6 @@ plugins {
     `maven-publish`
 }
 
-plugins.withType(NodeJsRootPlugin::class.java) {
-    val nodeJsRootExtension = extensions.getByType(NodeJsRootExtension::class.java)
-    nodeJsRootExtension.version = "20.10.0"
-}
-
-
 kotlin {
     jvm()
     js {
