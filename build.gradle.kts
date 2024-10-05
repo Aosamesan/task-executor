@@ -36,8 +36,8 @@ kotlin {
 afterEvaluate {
     publishing {
         publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
+            register<MavenPublication>("kotlin") {
+                from(components["kotlin"])
                 groupId = "com.github.aosamesan"
                 artifactId = "task-executor"
                 version = "1.0.0"
